@@ -1,4 +1,4 @@
 {
     "editor.renderWhitespace": "all",
-    "editor.wordWrap": "off"
+    "editor.wordWrap": "on"
 }
