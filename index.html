@@ -9,11 +9,11 @@
     <title>JS Issue Tracker</title>
 </head>
 
-<body>
+<body onload="fetchIssues()">
     <div class="container">
         <h1>JS Issue Tracker</h1>
         <div class="jumbotron">
-            <form action="" id="issInputForm">
+            <form action="" id="issueInputForm">
                 <div class="form-group">
                     <label for="issueDescriptionInput">Description</label>
                     <input type="text" class="form-control" id="issueDescriptionInput" placeholder="Describe the issue...">
@@ -37,7 +37,7 @@
             </form>
         </div>
         <div class="col-lg-12">
-            <div id="issueList">
+            <div id="issuesList">
 
             </div>
 
