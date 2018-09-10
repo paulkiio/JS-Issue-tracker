@@ -20,16 +20,44 @@ function saveIssue(e) {
         issues.push(issue);
         localStorage.setItem('issues', JSON.stringify(issues));
     } else {
-        let issues = JSON.parse(localStorage.getItem(issues));
+        let issues = JSON.parse(localStorage.getItem('issues'));
         issues.push(issue);
         localStorage.setItem('issues', JSON.stringify(issues));
     }
 
-    document.getElementById(issueInputForm).reset();
+    document.getElementById('issueInputForm').reset();
 
     fetchIssues();
 
     e.preventDefault();
+}
+
+function setStatusCloesd (id) {
+    let issues = JSON.parse(localStorage.getItem('issues'));
+
+    for (let i = 0; i < issues.length; i++) {
+        if (issues[i].id === id) {
+            issues[i].status = 'Closed';
+        }
+    }
+
+    localStorage.setItem('issues', JSON.stringify(issues));
+
+    fetchIssues();
+}
+
+function deleteIssue (id) {
+    let issues = JSON.parse(localStorage.getItem('issues'));
+
+    for (let i = 0; i < issues.length; i++) {
+        if (issues[i].id === id) {
+            issues.splice(i, 1);
+        }
+    }
+
+    localStorage.setItem('issues', JSON.stringify(issues));
+
+    fetchIssues();
 }
 
 function fetchIssues () {
@@ -51,7 +79,7 @@ function fetchIssues () {
                                 '<h3>'+ desc + '</h3>'+
                                 '<p><span class="glyphicon glyphicon-time"></span>' + severity + '</p>'+
                                 '<p><span class="glyphicon glyphicon-user"></span>' + assignedTo + '</p>'+
-                                '<a href="#" class="btn btn-warning" onclick="setStatusCloesd(\''+id+'\')">Close</a>'+
+                                '<a href="#" class="btn btn-warning" onclick="setStatusCloesd(\''+id+'\')">Close</a> | '+
                                 '<a href="#" class="btn btn-danger" onclick="deleteIssue(\''+id+'\')">Delete</a>'+
                                 '</div>';
     }
